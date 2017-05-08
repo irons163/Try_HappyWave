@@ -119,7 +119,7 @@ public class GameScene extends EasyScene implements ButtonLayer.OnClickListener{
     	player.runMovementAction(movementAction);
     	
 	    final MathUtil mathUtil = new MathUtil(speedX, speedY);
-	    mathUtil.setINITSPEEDX(mathUtil.genTotalSpeed());
+	    mathUtil.setInitSpeed(mathUtil.genTotalSpeed());
 	    mathUtil.setAngle(90);
 	    
 //	    MovementAction movementAction = new MovementActionSetWithThreadPool();
@@ -227,10 +227,10 @@ public class GameScene extends EasyScene implements ButtonLayer.OnClickListener{
 
 	    if(isPlayMusic){
 	        AudioUtil.startMusic();
-	        musicBtn.bitmap = musicBtnTextures.get(0);
+	        musicBtn.setBitmap(musicBtnTextures.get(0));
 	    }else{
 	        AudioUtil.pauseMusic();
-	        musicBtn.bitmap = musicBtnTextures.get(1);
+	        musicBtn.setBitmap(musicBtnTextures.get(1));
 	    }
 	    
 //	    myAdView = [MyADView spriteNodeWithTexture:nil];
@@ -288,10 +288,10 @@ void checkCollistion(){
 //}
 	    
 	@Override
-	public void initGameView(Activity activity, IGameController gameController,
+	public GameView initGameView(Activity activity, IGameController gameController,
 			IGameModel gameModel) {
 		// TODO Auto-generated method stub
-		gameView = new GameView(activity, gameController, gameModel);
+		return gameView = new GameView(activity, gameController, gameModel);
 	}
 
 	public void action(){
@@ -314,11 +314,11 @@ void checkCollistion(){
 	        }else if(musicBtn.getFrame().contains(location.x, location.y)){
 	            if(AudioUtil.isBackgroundMusicPlaying()){
 	                AudioUtil.pauseMusic();
-	                musicBtn.bitmap = musicBtnTextures.get(1);
+	                musicBtn.setBitmap(musicBtnTextures.get(1));
 //		                [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"isPlayMusic"];
 	            }else{
 	                AudioUtil.playBackgroundMusic();
-	                musicBtn.bitmap = musicBtnTextures.get(0);
+	                musicBtn.setBitmap(musicBtnTextures.get(0));
 //		                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isPlayMusic"];
 	            }
 	        }
@@ -668,9 +668,9 @@ void checkCollistion(){
 	    }
 	    
     	final MathUtil mathUtil = new MathUtil(speedX, speedY);
-	    mathUtil.setINITSPEEDX(mathUtil.genTotalSpeed());
+	    mathUtil.setInitSpeed(mathUtil.genTotalSpeed());
 	    mathUtil.setAngle(player.getRotation()+90);
-	    mathUtil.genSpeed();
+	    mathUtil.genSpeedXY();
 	    
 	    float newSpeedX = mathUtil.getSpeedX();
 	    float newSpeedY = mathUtil.getSpeedY();

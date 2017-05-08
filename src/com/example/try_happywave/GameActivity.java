@@ -24,7 +24,7 @@ public class GameActivity extends Stage{
 		// TODO Auto-generated method stub
 
 		
-		SceneManager sceneManager = new SceneManager();
+		SceneManager sceneManager = SceneManager.getInstance();
 		GameScene gameScene = new GameScene(this, "0", 0);
 		sceneManager.addScene(gameScene);
 		sceneManager.startScene(0);
